@@ -9,8 +9,7 @@
   "scripts": {
     "dev": "wrangler dev -c wrangler.toml",
     "deploymy": "wrangler deploy -c wrangler.my.toml",
-    "deploy": "wrangler deploy",
-    "selfcheck": "npx tsx tests/selfcheck.ts"
+    "deploy": "wrangler deploy"
   },
   "keywords": [
     "bitwarden",
