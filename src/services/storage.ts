@@ -162,17 +162,6 @@ export class StorageService {
       .run();
   }
 
-  async isSetupDisabled(): Promise<boolean> {
-    const row = await this.db.prepare('SELECT value FROM config WHERE key = ?').bind('setup_disabled').first<{ value: string }>();
-    return row?.value === 'true';
-  }
-
-  async setSetupDisabled(): Promise<void> {
-    await this.db.prepare('INSERT INTO config(key, value) VALUES(?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value')
-      .bind('setup_disabled', 'true')
-      .run();
-  }
-
   // --- Users ---
 
   async getUser(email: string): Promise<User | null> {

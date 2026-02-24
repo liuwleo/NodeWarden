@@ -452,52 +452,6 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
       color: var(--muted2);
     }
 
-    .modal-mask {
-      position: fixed;
-      inset: 0;
-      background: rgba(16, 24, 40, 0.45);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 20px;
-    }
-    .modal-mask.show { display: flex; }
-    .modal {
-      width: min(520px, 100%);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: #ffffff;
-      box-shadow: 0 24px 56px rgba(16, 24, 40, 0.18);
-      padding: 20px;
-    }
-    .modal h3 {
-      margin: 0 0 8px 0;
-      font-size: 18px;
-      color: #101828;
-    }
-    .modal p {
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.7;
-      color: #475467;
-    }
-    .modal-warn {
-      margin-top: 10px;
-      border: 1px solid #fecdca;
-      background: #fff6f5;
-      color: #b42318;
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .modal-actions {
-      margin-top: 16px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-    }
   </style>
 </head>
 <body>
@@ -696,13 +650,6 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
             <p id="t_done_desc">Your server is ready. Configure your Bitwarden client with this server URL:</p>
             <div class="server" id="serverUrl"></div>
           </div>
-          <div class="kv">
-            <h3 id="t_hide_title">Hide setup page</h3>
-            <p id="t_hide_desc"></p>
-            <div style="margin-top:10px;">
-              <button type="button" id="hideBtn" class="btn primary" onclick="openHideConfirmModal()">Hide setup page</button>
-            </div>
-          </div>
         </div>
       </section>
       </div>
@@ -727,18 +674,6 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
       </div>
       <div class="flow-actions" style="justify-content:flex-end;">
         <button id="nextBtn" class="btn primary" type="button">Next</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="hideModal" class="modal-mask" role="dialog" aria-modal="true" aria-labelledby="hideModalTitle" aria-describedby="hideModalDesc">
-    <div class="modal">
-      <h3 id="hideModalTitle"></h3>
-      <p id="hideModalDesc"></p>
-      <div class="modal-warn" id="hideModalWarn"></div>
-      <div class="modal-actions">
-        <button id="hideModalCancel" class="btn" type="button" onclick="closeHideConfirmModal()"></button>
-        <button id="hideModalConfirm" class="btn primary" type="button" onclick="disableSetupPage()"></button>
       </div>
     </div>
   </div>
@@ -823,7 +758,7 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
         copyCode: '复制验证码',
         totpExpire: '秒后过期',
         s6Title: '最终页面',
-        s6Desc: '最后一步：查看客户端使用地址，并可选择隐藏初始化页面。',
+        s6Desc: '最后一步：查看客户端使用地址。',
         nameLabel: '昵称',
         emailLabel: '邮箱',
         pwLabel: '主密码',
@@ -833,18 +768,7 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
         creating: '正在创建…',
         doneTitle: '初始化完成',
         doneDesc: '服务已就绪。在 Bitwarden 客户端中填入以下服务器地址：',
-        hideTitle: '隐藏初始化页',
-        hideDesc: '隐藏后，初始化页对任何人都会返回 404。你的密码库仍可正常使用。',
-        hideBtn: '隐藏初始化页',
-        hideWorking: '正在隐藏…',
-        hideDone: '已隐藏，此页面将返回 404。',
-        hideFailed: '隐藏失败',
-        hideConfirm: '确认隐藏初始化页？隐藏后页面将不可访问，但你的密码库不会受影响。',
-        hideModalTitle: '确认隐藏初始化页',
-        hideModalDesc: '隐藏后，初始化页将被永久关闭（返回 404）。你的密码库可继续使用。',
-        hideModalWarn: '此操作不可恢复。若要重新进入初始化流程，只能重新部署。',
         cancel: '取消',
-        confirmHide: '确认隐藏',
 
         prev: '上一步',
         next: '下一步',
@@ -920,7 +844,7 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
         copyCode: 'Copy code',
         totpExpire: 's left',
         s6Title: 'Final step',
-        s6Desc: 'Last step: check your server URL, then optionally hide this setup page.',
+        s6Desc: 'Last step: check your server URL.',
         nameLabel: 'Name',
         emailLabel: 'Email',
         pwLabel: 'Master password',
@@ -930,18 +854,7 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
         creating: 'Creating…',
         doneTitle: 'Setup complete',
         doneDesc: 'Your server is ready. Use this URL in Bitwarden clients:',
-        hideTitle: 'Hide setup page',
-        hideDesc: 'After hiding, this page returns 404 for everyone. Vault still works.',
-        hideBtn: 'Hide setup page',
-        hideWorking: 'Hiding…',
-        hideDone: 'Hidden. This page will now return 404.',
-        hideFailed: 'Failed to hide setup page',
-        hideConfirm: 'Hide setup page? It will no longer be accessible, but vault keeps working.',
-        hideModalTitle: 'Confirm hide setup page',
-        hideModalDesc: 'After hiding, this setup page is permanently closed (returns 404). Your vault keeps working.',
-        hideModalWarn: 'This action cannot be undone. Re-entering setup requires redeploy.',
         cancel: 'Cancel',
-        confirmHide: 'Confirm hide',
 
         prev: 'Previous',
         next: 'Next',
@@ -1033,9 +946,6 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
       setText('submitBtn', t('create'));
       setText('t_done_title', t('doneTitle'));
       setText('t_done_desc', t('doneDesc'));
-      setText('t_hide_title', t('hideTitle'));
-      setText('t_hide_desc', t('hideDesc'));
-      setText('hideBtn', t('hideBtn'));
       setText('t_s5_title', t('s5Title'));
       setText('t_s5_enable_title', t('s5EnableTitle'));
       setText('t_s5_enable_1', t('s5Enable1'));
@@ -1046,11 +956,6 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
       setText('copyTotpCodeBtnText', t('copyCode'));
       setText('t_s6_title', t('s6Title'));
       setText('t_s6_desc', t('s6Desc'));
-      setText('hideModalTitle', t('hideModalTitle'));
-      setText('hideModalDesc', t('hideModalDesc'));
-      setText('hideModalWarn', t('hideModalWarn'));
-      setText('hideModalCancel', t('cancel'));
-      setText('hideModalConfirm', t('confirmHide'));
 
       setText('prevBtn', t('prev'));
       setText('nextBtn', t('next'));
@@ -1336,42 +1241,6 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
       showMessage(t('doneTitle'), 'success');
     }
 
-    function openHideConfirmModal() {
-      const modal = document.getElementById('hideModal');
-      if (modal) modal.classList.add('show');
-    }
-
-    function closeHideConfirmModal() {
-      const modal = document.getElementById('hideModal');
-      if (modal) modal.classList.remove('show');
-    }
-
-    async function disableSetupPage() {
-      if (!isRegistered) return;
-      closeHideConfirmModal();
-      const btn = document.getElementById('hideBtn');
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = t('hideWorking');
-      }
-      try {
-        const res = await fetch('/setup/disable', { method: 'POST' });
-        const data = await res.json();
-        if (res.ok && data.success) {
-          showMessage(t('hideDone'), 'success');
-          setTimeout(() => window.location.reload(), 650);
-          return;
-        }
-        showMessage(data.error || t('hideFailed'), 'error');
-      } catch {
-        showMessage(t('hideFailed'), 'error');
-      }
-      if (btn) {
-        btn.disabled = false;
-        btn.textContent = t('hideBtn');
-      }
-    }
-
     async function pbkdf2(password, salt, iterations, keyLen) {
       const encoder = new TextEncoder();
       const passwordBytes = (password instanceof Uint8Array) ? password : encoder.encode(password);
@@ -1566,13 +1435,6 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
         });
       }
 
-      const hideModal = document.getElementById('hideModal');
-      if (hideModal) {
-        hideModal.addEventListener('click', (e) => {
-          if (e.target === hideModal) closeHideConfirmModal();
-        });
-      }
-
       const emailInput = document.getElementById('email');
       if (emailInput) {
         emailInput.addEventListener('change', () => {
@@ -1582,9 +1444,6 @@ export function renderRegisterPageHTML(jwtState: JwtSecretState | null): string 
         });
       }
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeHideConfirmModal();
-      });
     }
 
     init();

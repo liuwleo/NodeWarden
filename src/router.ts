@@ -37,7 +37,7 @@ import {
 import { handleSync } from './handlers/sync';
 
 // Setup handlers
-import { handleSetupPage, handleSetupStatus, handleDisableSetup } from './handlers/setup';
+import { handleSetupPage, handleSetupStatus } from './handlers/setup';
 import { handleKnownDevice, handleGetDevices, handleUpdateDeviceToken } from './handlers/devices';
 
 // Import handler
@@ -174,14 +174,6 @@ export async function handleRequest(request: Request, env: Env): Promise<Respons
     // Setup status
     if (path === '/setup/status' && method === 'GET') {
       return handleSetupStatus(request, env);
-    }
-
-    // Disable setup page (one-way)
-    if (path === '/setup/disable' && method === 'POST') {
-      if (!isSameOriginWriteRequest(request)) {
-        return errorResponse('Forbidden origin', 403);
-      }
-      return handleDisableSetup(request, env);
     }
 
     // Browser/devtools probe endpoint
